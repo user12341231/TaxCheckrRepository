@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<style>
+body {
+background-color: lightblue;
+}
+</style>
+<head>
+    <title>Tax Checkr</title>       
+</head>
+<h2>Tax Checkr</h2> 
+
+<p><b>Welcome to Tax Checkr! This is a system that verifies rather or not you overpaid on items you bought in your local store. To begin, please insert your subtotal:</b></p>
+<form> 
+    <label for="Sub-total Value">Subtotal (How much you paid before taxes):</label>
+    <input type="number" name="Sub-total" id="stv" value="" onclick="question()">
+</form>
+
+<p><b>Then, please specify your province (currently this only works in Canada):</b></p>
+<form>
+    <input type="radio" name="btn" id="Quebec" onclick="displayAsTextq()">
+    <label for="Quebec">Quebec</label> 
+    
+    <input type="radio" name="btn" id="Ontario" onclick="displayAsTexto()">
+    <label for="Ontario">Ontario</label>
+   
+    <input type="radio" name="btn" id="Manitoba" onclick="displayAsTextm()">
+    <label for="Manitoba">Manitoba</label>
+    
+    <input type="radio" name="btn" id="Saskachewan" onclick="displayAsTexts()">
+    <label for="Saskachewan">Saskachewan</label>
+   
+    <input type="radio" name="btn" id="Alberta" onclick="displayAsTexta()">
+    <label for="Alberta">Alberta</label>
+    
+    <input type="radio" name="btn" id="British Columbia" onclick="displayAsTextb()">
+    <label for="British Columbia">British Columbia</label>
+  
+    <input type="radio" name="btn" id="Nunavut" onclick="displayAsTextnv()">
+    <label for="Nunavut">Nunavut</label>
+   
+    <input type="radio" name="btn8 Territories" id="Northwest Territories" onclick="displayAsTextnt()">
+    <label for="Northwest Territories">Northwest Territories</label>
+   
+    <input type="radio" name="btn" id="Yukon" onclick="displayAsTexty()">
+    <label for="Yukon">Yukon</label>
+   
+    <input type="radio" name="btn" id="PEI" onclick="displayAsTextp()">
+    <label for="PEI">PEI</label>
+   
+    <input type="radio" name="btn" id="New Brunswick" onclick="displayAsTextnb()">
+    <label for="New Brunswick">New Brunswick</label>
+   
+    <input type="radio" name="btn" id="Nova Scotia"  onclick="displayAsTextns()">
+    <label for="Nova Scotia">Nova Scotia</label>
+</form>
+
+
+<script> 
+    var country = "Canada"
+    var province = ""
+    var subTotal = document.getElementById("stv").value;
+    var GSTRate = 0.05
+    var rateOfTaxInProvince = ""
+
+    function question()
+     {
+     let subt = Number(prompt("Please Enter Your sub-total"));
+     document.getElementById("stv").value = subt
+     subTotal = document.getElementById("stv").value;
+     }
+   
+    function displayAsTextq() 
+     {
+    province = "Quebec"
+    rateOfTaxInProvince = 0.09975;
+    calc()
+
+    }
+    function displayAsTexto() 
+     {
+    province = "Ontario"
+    rateOfTaxInProvince = 0.08;
+    calc()
+    
+    }
+    function displayAsTextm() 
+    {
+    province = "Manitoba"
+    rateOfTaxInProvince = 0.07;
+    calc()
+    
+    }
+    function displayAsTexts() 
+    {
+    province = "Saskachewan"
+    rateOfTaxInProvince = 0.06;
+    calc()
+    
+    }
+    function displayAsTexta() 
+    {
+    province = "Alberta"
+    rateOfTaxInProvince = 0.00;
+    calc()
+    
+    }
+    function displayAsTextb() 
+    {
+    province = "British Columbia"
+    rateOfTaxInProvince = 0.07;
+    calc()
+    
+    }
+    function displayAsTextnv() 
+    {
+    province = "Nunavut"
+    rateOfTaxInProvince = 0.15;
+    calc()
+    
+    }
+
+    
+    function displayAsTextnt() 
+    {
+    province = "Northwest Territories"
+    rateOfTaxInProvince = 0.00;
+    calc()
+    
+    }
+    function displayAsTexty() 
+    {
+    province = "Yukon"
+    rateOfTaxInProvince = 0.00;
+    calc()
+    
+    }
+    function displayAsTextp() 
+    {
+    province = "PEI"
+    rateOfTaxInProvince = 0.15;
+    calc()
+    
+    }
+    function displayAsTextnb() 
+    {
+    province = "New Brunswick"
+    rateOfTaxInProvince = 0.15;
+    calc()
+    
+    }
+    function displayAsTextns() 
+    {
+    province = "Nova Scotia"
+    rateOfTaxInProvince = 0.15;
+    calc()
+    
+    }
+
+    function calc()
+     {
+    var GSTCalculation = subTotal * GSTRate;
+    var RIQCalculation = subTotal * rateOfTaxInProvince; 
+    var taxPrice = GSTCalculation + RIQCalculation;
+    var priceAfterTax = Number(subTotal) + taxPrice;
+    priceAfterTax = priceAfterTax.toFixed(2) 
+    p = document.createElement("p");
+    p.innerHTML = "This item should cost " + priceAfterTax + "$ after all taxes in your province (" + province + ") . If this is not what you paid, perhaps you should visit the customer service desk of the store you bought this item from. You should have paid " + GSTCalculation + "$ in GST's and " + RIQCalculation.toFixed(2) + "$ in provincial taxes. In total, you should have paid " + taxPrice.toFixed(2) + "$ in all taxes applied."
+    document.body.appendChild(p)
+    }
+
+</script>
+</body>
+</html>
