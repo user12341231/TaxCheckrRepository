@@ -4,12 +4,21 @@
 <style>
 body {
 background-color: lightblue;
+margin-right: 10%;;
+
+;
 }
 </style>
 <head>
     <title>Tax Checkr</title>       
 </head>
-<h2>Tax Checkr</h2> 
+<h2>Tax Checkr</h2> <br>
+
+<style>
+    h2{
+        text-decoration: underline;
+    }
+</style>
 
 <p><b>Welcome to Tax Checkr! This is a system that verifies rather or not you overpaid on items you bought in your local store. To begin, please insert your subtotal:</b></p>
 <form> 
@@ -55,6 +64,7 @@ background-color: lightblue;
     <input type="radio" name="btn" id="Nova Scotia"  onclick="displayAsTextns()">
     <label for="Nova Scotia">Nova Scotia</label>
 </form>
+
 
 
 <script> 
@@ -166,7 +176,7 @@ background-color: lightblue;
     var priceAfterTax = Number(subTotal) + taxPrice;
     priceAfterTax = priceAfterTax.toFixed(2) 
     p = document.createElement("p");
-    p.innerHTML = "This item should cost " + priceAfterTax + "$ after all taxes in your province (" + province + ") . If this is not what you paid, perhaps you should visit the customer service desk of the store you bought this item from. You should have paid " + GSTCalculation + "$ in GST's and " + RIQCalculation.toFixed(2) + "$ in provincial taxes. In total, you should have paid " + taxPrice.toFixed(2) + "$ in all taxes applied."
+    p.innerHTML = "This item should cost " + priceAfterTax + "$ after all taxes in your province (" + province + ") . If this is not what you paid, perhaps you should visit the customer service desk of the store you bought this item from. You should have paid " + GSTCalculation + "$ in GST's and " + RIQCalculation.toFixed(2) + "$ in provincial taxes. In total, you should have paid " + taxPrice.toFixed(2) + "$ with all taxes applied."
     document.body.appendChild(p)
     }
 
